@@ -21,7 +21,14 @@ var defaults = {
 };
 
 var onPlayerReady = function onPlayerReady(player, options) {
+  
+    var MenuButton = videojs.getComponent('MenuButton');
+    var menuButton = new MenuButton(player);
 
+    menuButton.el().classList.add('vjs-settings-button');
+    var staticLabel = document.createElement('span');
+    menuButton.addClass('vjs-icon-cog');
+    player.controlBar.addChild(menuButton);
   // if (options.qualities.length > 1) {
   //   var MenuButton = videojs.getComponent('MenuButton');
   //   var MenuItem = videojs.getComponent('MenuItem');
