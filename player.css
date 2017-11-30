@@ -211,14 +211,17 @@ width: 60px!important;
 }
 
 .video-js .vjs-time-control {
-    -webkit-box-flex: 0 1 auto;
-    -moz-box-flex: 0 1 auto;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    width: auto
-    margin:0px!important;
- 	padding:0px!important;
+    -webkit-box-flex: none;
+    -moz-box-flex: none;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    font-size: 1em;
+    line-height: 3em;
+    min-width: 2em;
+    width: auto;
+    padding-left: 0em!important; 
+     padding-right: 0em!important; 
 }
 
 .video-js .vjs-control-bar {
