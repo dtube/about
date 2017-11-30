@@ -56,7 +56,7 @@
           MenuButton.call(this, player, options);
           this.el().setAttribute('aria-label','Quality');
           this.controlText('Quality');
-          this.addClass('vjs-resolution-switcher')
+          // this.addClass('vjs-resolution-switcher')
   
           if(options.dynamicLabel){
             videojs.addClass(this.label, 'vjs-resolution-button-label');
