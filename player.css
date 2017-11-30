@@ -21,6 +21,10 @@
   line-height: 2em;
 }
 
+.vjs-menu-button.vjs-settings-button{
+width: 4em!important;
+}
+
 .vjs-settings-button-staticlabel:before {
   content: '\f110';
   font-size: 1.5em;
@@ -32,8 +36,36 @@
   font-size: 1.5em;
   line-height: 2em;
 }
+.vjs-play-control.vjs-control.vjs-branding-logo{   
+display: -webkit-box;
+}
 
-.vjs-branding-logo{    display: block;background:url(https://emb.d.tube/logo.png) center center / 100% no-repeat}
+.vjs-branding-logo:before{   
+  color: rgb(216, 0, 0);
+ display: block;
+ content: '\f04b';
+ line-height: 2.3em;
+ font-size: 1.3em;
+ font-weight: 600;
+ margin-right: 5px;
+}
+
+.vjs-branding-logo:after{   
+   color: white;
+  display: block;
+  content: 'TUBE';
+  font-size: 1.5em;
+  line-height: 2em;
+  font-weight: 600;
+}
+
+
+
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: auto;
+  text-decoration: none;
+}
 
 .vjs-resolution-button-label
 {
@@ -42,7 +74,6 @@
 
 .vjs-menu-button.vjs-resolution-switcher {
 width: 60px!important;
-font-size: 14px;
 }
 
 .video-js .vjs-resolution-button .vjs-menu li {
@@ -50,11 +81,6 @@ font-size: 14px;
     font-size: 1em;
     font-family: Arial, Helvetica, sans-serif
 }
-
- .vjs-resolution-switcher
- {
-  display: block;
- }
 
  .video-js .vjs-load-progress {
     background: rgba(255,255,255,0.3);
@@ -131,6 +157,10 @@ font-size: 14px;
 
 .video-js .vjs-control:focus:before,.video-js .vjs-control:hover:before {
     text-shadow: 0 0 1em #fff,0 0 1em #fff,0 0 1em #fff
+}
+
+.vjs-fullscreen-control.vjs-control.vjs-button:hover{
+  text-shadow: 0 0 1em #fff,0 0 1em #fff,0 0 1em #fff
 }
 
 .video-js .vjs-spacer,.video-js .vjs-time-control {

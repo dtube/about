@@ -17,7 +17,7 @@
         var defaults = {
           branding: true,
           qualities: [],
-          title: "Logo Title",
+          title: "D.Tube",
           destination: "http://www.google.com",
           destinationTarget: "_blank"
         };
@@ -100,7 +100,7 @@
           if (options.branding) {
             var containerElement = document.createElement("div");
             containerElement.className = "vjs-fullscreen-control vjs-control vjs-button";
-            containerElement.style = 'width:86px'
+            containerElement.style = 'width:70px'
 
             var linkElement = document.createElement("a");
             linkElement.className = "vjs-play-control vjs-control vjs-branding-logo";
