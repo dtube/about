@@ -259,8 +259,9 @@ width: 60px!important;
 }
 
 .video-js .vjs-big-play-button {
-    top: 50%;
-    left: 50%;
+    bottom: 42px;
+    left: 45px;
+    top:auto!important;
     margin-left: -1em;
     margin-top: -1em;
     width: 2em;
@@ -401,4 +402,19 @@ width: 60px!important;
 
 .video-js .vjs-load-progress {
     background: rgba(255,255,255,0.3);
+}
+
+.vjs-playback-rate .vjs-playback-rate-value {
+    pointer-events: none;
+    font-size: 14px;
+    line-height: 2;
+    text-align: center;
+}
+
+.vjs-playback-rate > .vjs-menu-button, .vjs-playback-rate .vjs-playback-rate-value {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
