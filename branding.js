@@ -90,17 +90,17 @@
           //   }, false);
           // }
           //test
-          var MenuButton = videojs.getComponent('MenuButton');
-          var menuButton = new MenuButton(player);
+          // var MenuButton = videojs.getComponent('MenuButton');
+          // var menuButton = new MenuButton(player);
 
-          menuButton.el().classList.add('vjs-settings-button');
-          var staticLabel = document.createElement('span');
-					menuButton.addClass('vjs-icon-cog');
-					player.controlBar.addChild(menuButton);
+          // menuButton.el().classList.add('vjs-settings-button');
+          // var staticLabel = document.createElement('span');
+					// menuButton.addClass('vjs-icon-cog');
+					// player.controlBar.addChild(menuButton);
           if (options.branding) {
             var containerElement = document.createElement("div");
-            containerElement.className = "vjs-fullscreen-control vjs-control vjs-button";
-            containerElement.style = 'width:70px'
+            containerElement.className = "vjs-fullscreen-control vjs-control vjs-button vjs-custom";
+            containerElement.style = 'width:70px;right:40px;'
 
             var linkElement = document.createElement("a");
             linkElement.className = "vjs-play-control vjs-control vjs-branding-logo";
