@@ -145,8 +145,6 @@ width: 60px!important;
     flex: 1 1 auto
 }
 
-
-
 .video-js .vjs-time-control {
     -webkit-box-flex: 0 1 auto;
     -moz-box-flex: 0 1 auto;
@@ -154,7 +152,6 @@ width: 60px!important;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     width: auto
-    margin:0px!important;
 }
 
 .video-js .vjs-time-control.vjs-time-divider {
