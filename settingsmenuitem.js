@@ -2,6 +2,7 @@
 
 const MenuItem = videojs.getComponent('MenuItem');
 const playbackRateMenuButton = videojs.getComponent('PlaybackRateMenuButton');
+const resolutionswitcher = videojs.getComponent('videoJsResolutionSwitcher');
 const component = videojs.getComponent('Component');
 
 const toTitleCase = function(string) {

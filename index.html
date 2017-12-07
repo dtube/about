@@ -1,7 +1,6 @@
 <html><head>
 <link href="https://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
 <link href="player.css" rel="stylesheet">
-<link href="player.scss" rel="stylesheet">
 <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
 <script src="https://vjs.zencdn.net/6.2.7/video.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webtorrent/0.98.20/webtorrent.min.js"></script>
@@ -80,28 +79,27 @@
       sources:[
         {src:videoUrl,type:"video/mp4"}
       ],
-      'playbackRates':[0.25,0.5,0.75,1,1.25,1.5,2],
+      techOrder:["html5"],
+      'playbackRates': [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2],
       controlBar: {
         children: {
-            'playToggle':{},
-            'muteToggle':{},
-            'volumeControl':{},
-            'currentTimeDisplay':{},
-            'timeDivider':{},
-            'durationDisplay':{},
-            'liveDisplay':{},
-            'flexibleWidthSpacer':{},
-            'progressControl':{},
-
-            'settingsMenuButton': {
-                entries : [
-                    'subtitlesButton',
-                    'captionsButton',
-                    'playbackRateMenuButton',
-                    'ResolutionMenuButton'
-                ]
-            },
-            'fullscreenToggle':{}
+          'playToggle': {},
+          'muteToggle': {},
+          'volumeControl': {},
+          'currentTimeDisplay': {},
+          'timeDivider': {},
+          'durationDisplay': {},
+          'liveDisplay': {},
+          'flexibleWidthSpacer': {},
+          'progressControl': {},
+          'settingsMenuButton': {
+            entries: [
+              // 'subtitlesButton',
+              // 'captionsButton',
+              'playbackRateMenuButton'
+              ]  
+          },
+          'fullscreenToggle': {}
         }
       },
       plugins: {
@@ -109,7 +107,7 @@
           namespace: 'dtube'
         },
         videoJsResolutionSwitcher: {
-          default: 'Quality',
+          default: 'Source',
           dynamicLabel: true
         }
       }

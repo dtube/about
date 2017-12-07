@@ -17,7 +17,7 @@
         var defaults = {
           branding: true,
           qualities: [],
-          title: "D.Tube",
+          title: "Logo Title",
           destination: "http://www.google.com",
           destinationTarget: "_blank"
         };
@@ -95,19 +95,20 @@
 
           // menuButton.el().classList.add('vjs-settings-button');
           // var staticLabel = document.createElement('span');
-					// menuButton.addClass('vjs-icon-cog');
-					// player.controlBar.addChild(menuButton);
+          // menuButton.addClass('vjs-icon-cog');
+          // player.controlBar.addChild(menuButton);
+          
           if (options.branding) {
             var containerElement = document.createElement("div");
-            containerElement.className = "vjs-fullscreen-control vjs-control vjs-button vjs-custom";
-            containerElement.style = 'width:70px;right:40px;'
+            containerElement.className = "vjs-fullscreen-control vjs-control vjs-button";
+            containerElement.style = 'width:75px;padding-left: 15px;'
 
             var linkElement = document.createElement("a");
             linkElement.className = "vjs-play-control vjs-control vjs-branding-logo";
             linkElement.setAttribute("href", options.destination || defaults.destination);
             linkElement.setAttribute("title", options.title || defaults.title);
             linkElement.setAttribute("target", options.destinationTarget || defaults.destinationTarget);
-            linkElement.style = 'width:86px'
+            linkElement.style = 'width:75px'
             containerElement.appendChild(linkElement);
 
             player.controlBar.el().insertBefore(containerElement, player.controlBar.fullscreenToggle.el());
