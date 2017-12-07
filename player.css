@@ -63,9 +63,23 @@
   width: 8.35em
 }
 
-.video-js .vjs-volume-menu-button.vjs-volume-menu-button-horizontal:hover .vjs-menu .vjs-menu-content {
+.vjs-mute-control.vjs-control:hover ~ .vjs-volume-horizontal{
   height: 3em;
-  width: 6.35em
+  width: 6.35em!important;
+}
+
+.vjs-volume-control:hover ~ .vjs-volume-horizontal{
+  height: 3em;
+  width: 6.35em!important;
+}
+
+.vjs-volume-horizontal{
+  width:0.5em!important;
+}
+
+.vjs-volume-horizontal:hover{
+  height: 3em;
+  width: 6.35em!important;
 }
 
 
@@ -101,7 +115,7 @@
 }
 
 .video-js .vjs-time-control.vjs-current-time {
-  margin-left: 1em
+  margin-left: 0em!important;
 }
 
 .video-js .vjs-time-control .vjs-current-time-display,.video-js .vjs-time-control .vjs-duration-display {
@@ -237,6 +251,7 @@
   background-color: #000000;
   margin: 0;
   padding: .5em;
+  text-align: right!important;
 }
 
 .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected {
@@ -463,31 +478,6 @@ a:-webkit-any-link {
     text-align: center
 }
 
-.video-js .vjs-time-control.vjs-current-time {
-    margin-left: 1em
-}
-
-.video-js .vjs-time-control .vjs-current-time-display,.video-js .vjs-time-control .vjs-duration-display {
-    width: 100%
-}
-
-.video-js .vjs-time-control .vjs-current-time-display {
-    text-align: right
-}
-
-.video-js .vjs-time-control .vjs-duration-display {
-    text-align: left
-}
-
-.video-js .vjs-play-progress:before,.video-js .vjs-progress-control .vjs-play-progress:before,.video-js .vjs-remaining-time,.video-js .vjs-volume-level:after,.video-js .vjs-volume-level:before,.video-js.vjs-live .vjs-time-control.vjs-current-time,.video-js.vjs-live .vjs-time-control.vjs-duration,.video-js.vjs-live .vjs-time-control.vjs-time-divider,.video-js.vjs-no-flex .vjs-time-control.vjs-remaining-time {
-    display: none
-}
-
-.video-js.vjs-no-flex .vjs-time-control {
-    display: table-cell;
-    width: 4em
-}
-
 .video-js .vjs-progress-control {
     position: absolute;
     left: 0;
@@ -509,6 +499,7 @@ a:-webkit-any-link {
     height: 1.5em;
     top: -1.5em
 }
+
 
 .video-js .vjs-control-bar {
     -webkit-transition: -webkit-transform .1s ease 0s;
@@ -613,6 +604,19 @@ a:-webkit-any-link {
   transition: all 0.4s;
   overflow: hidden
 }
+
+.video-js .vjs-time-control {
+  -webkit-box-flex: none;
+  -moz-box-flex: none;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  font-size: 1em;
+  line-height: 3em;
+  min-width: 2em;
+  width: auto;
+  padding-left: 0em;
+  padding-right: 0em; }
 
 .video-js .vjs-menu-button-inline:before {
   width: 2.222222222em
@@ -727,7 +731,7 @@ a:-webkit-any-link {
         overflow: inherit;
       }
       .vjs-menu-item {
-        text-align: left;
+        text-align: right!important;
       }
       .vjs-settings-sub-menu-value,
       .vjs-settings-sub-menu-title {
