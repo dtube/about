@@ -225,7 +225,10 @@
 }
 
 .video-js .vjs-control-bar {
-  background-color: rgba(0,0,0,0.3) !important;
+  background: -webkit-linear-gradient(#5f5f5f4d, #191919d4);
+  background: -o-linear-gradient(#5f5f5f4d, #191919d4);
+  background: -moz-linear-gradient(#5f5f5f4d, #191919d4);
+  background: linear-gradient(#5f5f5f4d, #191919d4);
   color: #ffffff;
   font-size: 12px
 }
