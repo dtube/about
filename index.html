@@ -1,4 +1,6 @@
-<html><head>
+<html>
+
+<head>
   <link href="https://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
   <link href="player.css" rel="stylesheet">
   <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
@@ -9,8 +11,10 @@
   <script src="resolutionswitcher.js"></script>
   <script src="settingsmenubuttons.js"></script>
   <script src="settingsmenuitem.js"></script>
-  </head>
-  <body style='margin:0'>
+  <script src="hotkeys.js"></script>
+</head>
+
+<body style='margin:0'>
   <script>
     gateways = [
       "https://ipfs.io",
@@ -24,35 +28,47 @@
     ]
     player = null
     itLoaded = false
-    steem.api.setOptions({ url: 'https://api.steemit.com' });
-    var path=window.location.href.split("#!/")[1];
+    steem.api.setOptions({
+      url: 'https://api.steemit.com'
+    });
+    var path = window.location.href.split("#!/")[1];
     var autoplay = (path.split("/")[2] == 'true')
     var nobranding = (path.split("/")[3] == 'true')
     var videoGateway = path.split("/")[4]
     var snapGateway = path.split("/")[5]
-    
-    steem.api.getContent(path.split("/")[0], path.split("/")[1], function(err,b){
+
+    steem.api.getContent(path.split("/")[0], path.split("/")[1], function (err, b) {
       if (err) {
         console.log(err)
         return
       }
-  
-      var a=JSON.parse(b.json_metadata).video;
+
+      var a = JSON.parse(b.json_metadata).video;
       if (!videoGateway) videoGateway = gatewayByHash(a.content.videohash)
       if (!snapGateway) snapGateway = gatewayByHash(a.info.snaphash)
       var qualities = []
-      
+
       if (a.content.video480hash) {
-        qualities.push({label: '480p', type: 'video/mp4', src: linkByHash(a.content.video480hash)})
-        qualities.push({label: 'Source', type: 'video/mp4', src: linkByHash(a.content.videohash)})
+        qualities.push({
+          label: '480p',
+          type: 'video/mp4',
+          src: linkByHash(a.content.video480hash)
+        })
+        qualities.push({
+          label: 'Source',
+          type: 'video/mp4',
+          src: linkByHash(a.content.videohash)
+        })
         createPlayer(linkByHash(a.info.snaphash), autoplay, nobranding, qualities)
       } else {
-        qualities.push({label: 'Source', type: 'video/mp4', src: linkByHash(a.content.videohash)})
+        qualities.push({
+          label: 'Source',
+          type: 'video/mp4',
+          src: linkByHash(a.content.videohash)
+        })
         createPlayer(linkByHash(a.info.snaphash), autoplay, nobranding, qualities)
       }
-        
-      
-  
+
       // if there's a magnet link, start torrent in background
       if (a.content.magnet) {
         var Torrent = new WebTorrent()
@@ -61,7 +77,7 @@
           torrent.on('download', function (bytes) {
             console.log('download speed: ' + torrent.downloadSpeed)
             console.log('progress: ' + torrent.progress)
-            if (!itLoaded && torrent.downloadSpeed > a.info.filesize/a.info.duration) {
+            if (!itLoaded && torrent.downloadSpeed > a.info.filesize / a.info.duration) {
               itLoaded = true
               var file = torrent.files[0]
               var container = document.getElementsByTagName('video')[0]
@@ -71,27 +87,27 @@
         })
       }
     });
-  
-    function createPlayer( posterUrl, autoplay, branding, qualities) {
-      var c=document.createElement("video");
+
+    function createPlayer(posterUrl, autoplay, branding, qualities) {
+      var c = document.createElement("video");
       //c.src=videoUrl;
-      c.poster=posterUrl;
-      c.controls=true;
-      c.autoplay=autoplay;
-      c.id="player";
-      c.className="video-js";
-      c.style="width:100%;height:100%";
-      c.addEventListener('loadeddata', function() {
-        if(c.readyState >= 3) {
+      c.poster = posterUrl;
+      c.controls = true;
+      c.autoplay = autoplay;
+      c.id = "player";
+      c.className = "video-js";
+      c.style = "width:100%;height:100%";
+      c.addEventListener('loadeddata', function () {
+        if (c.readyState >= 3) {
           itLoaded = true
         }
       });
       document.body.appendChild(c);
-      player=videojs("player",{
-        inactivityTimeout:1000,
-        sourceOrder:true,
-        sources:qualities,
-        techOrder:["html5"],
+      player = videojs("player", {
+        inactivityTimeout: 1000,
+        sourceOrder: true,
+        sources: qualities,
+        techOrder: ["html5"],
         'playbackRates': [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2],
         controlBar: {
           children: {
@@ -109,7 +125,7 @@
                 //  'subtitlesButton',
                 //  'captionsButton',
                 'playbackRateMenuButton'
-                ]  
+              ]
             },
             'fullscreenToggle': {}
           }
@@ -123,30 +139,40 @@
           }
         }
       });
+      videojs('player').ready(function () {
+        console.log("looog")
+        this.hotkeys({
+          volumeStep: 0.1,
+          seekStep: 5,
+          enableModifiersForNumbers: false
+        });
+      });
       player.brand({
         branding: !JSON.parse(nobranding),
-        title:"Watch on DTube",
-        destination:"http://d.tube/#!/v/"+path.split("/")[0]+'/'+path.split("/")[1],destinationTarget:"_blank"
+        title: "Watch on DTube",
+        destination: "http://d.tube/#!/v/" + path.split("/")[0] + '/' + path.split("/")[1],
+        destinationTarget: "_blank"
       })
       //player.updateSrc(qualities)
-      player.on('resolutionchange', function(){
+      player.on('resolutionchange', function () {
         console.info('Source changed to %s', player.src())
       })
     }
-  
+
     function removePlayer() {
       var elem = document.getElementById('player');
       return elem.parentNode.removeChild(elem);
     }
-  
+
     function gatewayByHash(ipfsHash) {
-      var g = ipfsHash.charCodeAt(ipfsHash.length-1) % gateways.length
+      var g = ipfsHash.charCodeAt(ipfsHash.length - 1) % gateways.length
       return gateways[g].split('://')[1]
     }
-  
+
     function linkByHash(ipfsHash) {
-      return 'https://'+gatewayByHash(ipfsHash)+'/ipfs/'+ipfsHash
+      return 'https://' + gatewayByHash(ipfsHash) + '/ipfs/' + ipfsHash
     }
   </script>
-  </body>
-  </html>
+</body>
+
+</html>
