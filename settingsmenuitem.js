@@ -90,15 +90,15 @@ class SettingsMenuItem extends MenuItem {
    */
   handleClick() {
     // Remove open class to ensure only the open submenu gets this class
-    videojs.removeClass(this.el_, 'open');
+    videojs.dom.removeClass(this.el_, 'open');
 
     super.handleClick();
 
     // Wether to add or remove vjs-hidden class on the settingsSubMenuEl element
-    if (videojs.hasClass(this.settingsSubMenuEl_, 'vjs-hidden')) {
-      videojs.removeClass(this.settingsSubMenuEl_, 'vjs-hidden');
+    if (videojs.dom.hasClass(this.settingsSubMenuEl_, 'vjs-hidden')) {
+      videojs.dom.removeClass(this.settingsSubMenuEl_, 'vjs-hidden');
     } else {
-      videojs.addClass(this.settingsSubMenuEl_, 'vjs-hidden');
+      videojs.dom.addClass(this.settingsSubMenuEl_, 'vjs-hidden');
     }
   }
 
