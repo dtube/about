@@ -102,7 +102,7 @@
           });
         };
 
-        _videoJs2["default"].plugin('brand', brand);
+        _videoJs2["default"].registerPlugin('brand', brand);
         brand.VERSION = '0.0.4';
 
         exports["default"] = brand;
