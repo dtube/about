@@ -26,6 +26,7 @@
       "https://scrappy.i.ipfs.io",
       "https://chappy.i.ipfs.io"
     ]
+
     player = null
     itLoaded = false
     steem.api.setOptions({
@@ -36,7 +37,7 @@
     var nobranding = (path.split("/")[3] == 'true')
     var videoGateway = path.split("/")[4]
     var snapGateway = path.split("/")[5]
-
+    var hashToTest;
     steem.api.getContent(path.split("/")[0], path.split("/")[1], function (err, b) {
       if (err) {
         console.log(err)
@@ -59,6 +60,7 @@
           type: 'video/mp4',
           src: linkByHash(a.content.videohash)
         })
+        checkGateways(gateways);
         createPlayer(linkByHash(a.info.snaphash), autoplay, nobranding, qualities)
       } else {
         qualities.push({
@@ -171,6 +173,32 @@
     function linkByHash(ipfsHash) {
       return 'https://' + gatewayByHash(ipfsHash) + '/ipfs/' + ipfsHash
     }
+
+    function checkGateways(gateways) {
+      const total = gateways.length
+      let checked = 0
+      gateways.forEach((gateway) => {
+        const gatewayAndHash = gateway.replace(hashToTest)
+        fetch(gatewayAndHash)
+          .then(res => res.text())
+          .then((text) => {
+            // const matched = text.trim() === hashString.trim()
+            // addNode(gatewayAndHash, matched, matched ? 'All good' : 'Output did not match expected output')
+            console.log(gatewayAndHash, matched, matched ? 'All good' : 'Output did not match expected output')
+            checked++
+            updateStats(total, checked)
+          }).catch((err) => {
+            window.err = err
+            // addNode(gatewayAndHash, false, err)
+            checked++
+            updateStats(total, checked)
+          })
+      })
+    }
+
+    fetch(gateways)
+      .then(res => res.json())
+      .then(gateways => checkGateways(gateways))
   </script>
 </body>
 
