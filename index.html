@@ -16,21 +16,6 @@
 
 <body style='margin:0'>
   <script>
-    gateways = [
-      "https://ipfs.io/ipfs/:hash",
-      "https://gateway.ipfs.io/ipfs/:hash",
-      "https://ipfs.infura.io/ipfs/:hash",
-      "https://upload.global/ipfs/:hash",
-      "https://siderus.io/ipfs/:hash",
-      "https://www.eternum.io/ipfs/:hash",
-      "https://hardbin.com/ipfs/:hash",
-      "https://ipfs.macholibre.org/ipfs/:hash",
-      "https://ipfs.works/ipfs/:hash",
-      "https://ipfs.work/ipfs/:hash",
-      "https://ipfs.wa.hle.rs/ipfs/:hash",
-      "https://api.wisdom.sh/ipfs/:hash"
-    ]
-
     player = null
     itLoaded = false
     steem.api.setOptions({
@@ -74,7 +59,7 @@
         qualities.push({
           label: 'Source',
           type: 'video/mp4',
-          src: linkByHash(a.content.videohash)
+          src: checkHashAndGateways(a.content.videohash)
         })
         createPlayer(checkHashAndGateways(a.info.snaphash), autoplay, nobranding, qualities)
       }
@@ -173,14 +158,31 @@
       return elem.parentNode.removeChild(elem);
     }
 
-    function gatewayByHash(ipfsHash) {
-      var g = ipfsHash.charCodeAt(ipfsHash.length - 1) % gateways.length
-      return gateways[g].split('://')[1]
-    }
+    // function gatewayByHash(ipfsHash) {
+    //   var g = ipfsHash.charCodeAt(ipfsHash.length - 1) % gateways.length
+    //   return gateways[g].split('://')[1]
+    // }
 
-    function linkByHash(ipfsHash) {
-      return 'https://' + gatewayByHash(ipfsHash) + '/ipfs/' + ipfsHash
-    }
+    // function linkByHash(ipfsHash) {
+    //   return 'https://' + gatewayByHash(ipfsHash) + '/ipfs/' + ipfsHash
+    // }
+    gateways = [
+      "https://ipfs.io/ipfs/:hash",
+      "https://gateway.ipfs.io/ipfs/:hash",
+      "https://earth.i.ipfs.io/ipfs/:hash",
+      "https://scrappy.i.ipfs.io/ipfs/:hash",
+      "https://chappy.i.ipfs.io/ipfs/:hash",
+      "https://gateway.ipfs.io/ipfs/:hash",
+      "https://ipfs.infura.io/ipfs/:hash",
+      "https://upload.global/ipfs/:hash",
+      "https://siderus.io/ipfs/:hash",
+      "https://www.eternum.io/ipfs/:hash",
+      "https://hardbin.com/ipfs/:hash",
+      "https://ipfs.macholibre.org/ipfs/:hash",
+      "https://ipfs.works/ipfs/:hash",
+      "https://ipfs.work/ipfs/:hash",
+      "https://ipfs.wa.hle.rs/ipfs/:hash",
+    ]
 
 
     function checkHashAndGateways(hashToTest) {
@@ -189,7 +191,6 @@
       gateways.forEach((gateway) => {
         const gatewayAndHash = gateway.replace(':hash', hashToTest)
         fetch(gatewayAndHash)
-          .then(res => res)
           .then((res) => {
           checked++
           updateStats(total, checked)
@@ -206,7 +207,6 @@
           }).catch((err) => {
             window.err = err
             console.log(gatewayAndHash, false, err)
-            // selectNode(gatewayAndHash, false, err)
             checked++
             updateStats(total, checked)
           })
