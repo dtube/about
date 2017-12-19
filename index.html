@@ -39,8 +39,8 @@
     var path = window.location.href.split("#!/")[1];
     var autoplay = (path.split("/")[2] == 'true')
     var nobranding = (path.split("/")[3] == 'true')
-    var videoGateway = path.split("/")[4]
-    var snapGateway = path.split("/")[5]
+    // var videoGateway = path.split("/")[4]
+    // var snapGateway = path.split("/")[5]
     var hashToTest;
     steem.api.getContent(path.split("/")[0], path.split("/")[1], function (err, b) {
       if (err) {
@@ -49,10 +49,10 @@
       }
       var a = JSON.parse(b.json_metadata).video;
 
-      if (!videoGateway) {
-        videoGateway = checkHashAndGateways(a.content.videohash);
-      }
-      if (!snapGateway) snapGateway = checkHashAndGateways(a.info.snaphash)
+      // if (!videoGateway) {
+      //   videoGateway = checkHashAndGateways(a.content.videohash);
+      // }
+      // if (!snapGateway) snapGateway = checkHashAndGateways(a.info.snaphash)
       var qualities = []
 
       if (a.content.video480hash) {
@@ -183,7 +183,7 @@
     }
 
 
-    function checkHashAndGateways(hashToTest,hashInfo) {
+    function checkHashAndGateways(hashToTest) {
       const total = gateways.length
       let checked = 0
       gateways.forEach((gateway) => {
@@ -191,22 +191,22 @@
         fetch(gatewayAndHash)
           .then(res => res)
           .then((res) => {
-            console.log(res.status)
+          checked++
+          updateStats(total, checked)
             switch(res.status) {
               case 200:
-                  console.log('easy')
+                  console.log('Server Status ' + res.status)
+                  console.log(gatewayAndHash + ' Node Online')
                   return gatewayAndHash
                   break;
               default:
-              console.log('down')
+              console.log('strange')
+              break;
           }
-            //const matched = text.trim() === hashInfo.trim()
-            selectNode(gatewayAndHash, matched, matched ? 'All good' : 'Output did not match expected output')
-            checked++
-            updateStats(total, checked)
           }).catch((err) => {
             window.err = err
-            selectNode(gatewayAndHash, false, err)
+            console.log(gatewayAndHash, false, err)
+            // selectNode(gatewayAndHash, false, err)
             checked++
             updateStats(total, checked)
           })
@@ -217,14 +217,6 @@
       console.log(checked + '/' + total + ' gateways checked')
     }
 
-    function selectNode(gateway, online, title) {
-      console.log(gateway, online, title)
-      if (online) {
-        console.log('Node Online')
-      } else {
-        console.log('Node Offline')
-      }
-    }
   </script>
 </body>
 
