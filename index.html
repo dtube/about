@@ -34,6 +34,8 @@
       }
       var a = JSON.parse(b.json_metadata).video;
 
+
+
       // if (!videoGateway) {
       //   videoGateway = checkHashAndGateways(a.content.videohash);
       // }
@@ -41,27 +43,34 @@
       var qualities = []
 
       if (a.content.video480hash) {
-        qualities.push({
-          label: '480p',
-          type: 'video/mp4',
-          src: checkHashAndGateways(a.content.video480hash)
+        checkHashAndGateways(a.content.video480hash, function (err, result) {
+          qualities.push({
+            label: '480p',
+            type: 'video/mp4',
+            src: result
+          })
         })
-        qualities.push({
-          label: 'Source',
-          type: 'video/mp4',
-          src: checkHashAndGateways(a.content.videohash),
+        checkHashAndGateways(a.content.videohash, function (err, result) {
+          qualities.push({
+            label: 'Source',
+            type: 'video/mp4',
+            src: result
+          })
         })
-
-        console.log(a.content.videohash)
-
-        createPlayer(checkHashAndGateways(a.info.snaphash), autoplay, nobranding, qualities)
+        checkHashAndGateways(a.info.snaphash, function (err, result) {
+          createPlayer(result, autoplay, nobranding, qualities)
+        })
       } else {
-        qualities.push({
-          label: 'Source',
-          type: 'video/mp4',
-          src: checkHashAndGateways(a.content.videohash)
+        checkHashAndGateways(a.content.videohash, function (err, result) {
+          qualities.push({
+            label: 'Source',
+            type: 'video/mp4',
+            src: result
+          })
         })
-        createPlayer(checkHashAndGateways(a.info.snaphash), autoplay, nobranding, qualities)
+        checkHashAndGateways(a.info.snaphash, function (err, result) {
+          createPlayer(result, autoplay, nobranding, qualities)
+        })
       }
 
       // if there's a magnet link, start torrent in background
@@ -185,30 +194,30 @@
     ]
 
 
-    function checkHashAndGateways(hashToTest) {
+    function checkHashAndGateways(hashToTest, cb) {
       const total = gateways.length
       let checked = 0
       gateways.forEach((gateway) => {
         const gatewayAndHash = gateway.replace(':hash', hashToTest)
-        fetch(gatewayAndHash)
-          .then((res) => {
-          checked++
-          updateStats(total, checked)
-            switch(res.status) {
-              case 200:
-                  console.log('Server Status ' + res.status)
-                  console.log(gatewayAndHash + ' Node Online')
-                  return gatewayAndHash
-                  break;
-              default:
-              console.log('strange')
-              break;
-          }
+        fetch(gatewayAndHash).then((res) => {
+            // cb(null, gatewayAndHash)
+            // checked++
+            // updateStats(total, checked)
+               switch(res.status) {
+                 case 200:
+                    //  console.log('Server Status ' + res.status)
+                    //  console.log(gatewayAndHash + ' Node Online')
+                     cb(null,gatewayAndHash) 
+                     break;
+                 default:
+                 console.log('strange')
+                 break;
+             }
           }).catch((err) => {
             window.err = err
-            console.log(gatewayAndHash, false, err)
-            checked++
-            updateStats(total, checked)
+            // console.log(gatewayAndHash, false, err)
+            // checked++
+            // updateStats(total, checked)
           })
       })
     }
