@@ -17,14 +17,18 @@
 <body style='margin:0'>
   <script>
     gateways = [
-      "https://ipfs.io",
-      "https://dtube1.gateway.ipfsstore.it:8443",
-      "https://dtube2.gateway.ipfsstore.it:8443",
-      "https://gateway.ipfs.io",
-      "https://earth.i.ipfs.io",
-      "https://gateway.ipfsstore.it:8443",
-      "https://scrappy.i.ipfs.io",
-      "https://chappy.i.ipfs.io"
+      "https://ipfs.io/ipfs/:hash",
+      "https://gateway.ipfs.io/ipfs/:hash",
+      "https://ipfs.infura.io/ipfs/:hash",
+      "https://upload.global/ipfs/:hash",
+      "https://siderus.io/ipfs/:hash",
+      "https://www.eternum.io/ipfs/:hash",
+      "https://hardbin.com/ipfs/:hash",
+      "https://ipfs.macholibre.org/ipfs/:hash",
+      "https://ipfs.works/ipfs/:hash",
+      "https://ipfs.work/ipfs/:hash",
+      "https://ipfs.wa.hle.rs/ipfs/:hash",
+      "https://api.wisdom.sh/ipfs/:hash"
     ]
 
     player = null
@@ -43,32 +47,36 @@
         console.log(err)
         return
       }
-
       var a = JSON.parse(b.json_metadata).video;
-      if (!videoGateway) videoGateway = gatewayByHash(a.content.videohash)
-      if (!snapGateway) snapGateway = gatewayByHash(a.info.snaphash)
+
+      if (!videoGateway) {
+        videoGateway = checkHashAndGateways(a.content.videohash);
+      }
+      if (!snapGateway) snapGateway = checkHashAndGateways(a.info.snaphash)
       var qualities = []
 
       if (a.content.video480hash) {
         qualities.push({
           label: '480p',
           type: 'video/mp4',
-          src: linkByHash(a.content.video480hash)
+          src: checkHashAndGateways(a.content.video480hash)
         })
         qualities.push({
           label: 'Source',
           type: 'video/mp4',
-          src: linkByHash(a.content.videohash)
+          src: checkHashAndGateways(a.content.videohash),
         })
-        checkGateways(gateways);
-        createPlayer(linkByHash(a.info.snaphash), autoplay, nobranding, qualities)
+
+        console.log(a.content.videohash)
+
+        createPlayer(checkHashAndGateways(a.info.snaphash), autoplay, nobranding, qualities)
       } else {
         qualities.push({
           label: 'Source',
           type: 'video/mp4',
           src: linkByHash(a.content.videohash)
         })
-        createPlayer(linkByHash(a.info.snaphash), autoplay, nobranding, qualities)
+        createPlayer(checkHashAndGateways(a.info.snaphash), autoplay, nobranding, qualities)
       }
 
       // if there's a magnet link, start torrent in background
@@ -174,31 +182,49 @@
       return 'https://' + gatewayByHash(ipfsHash) + '/ipfs/' + ipfsHash
     }
 
-    function checkGateways(gateways) {
+
+    function checkHashAndGateways(hashToTest,hashInfo) {
       const total = gateways.length
       let checked = 0
       gateways.forEach((gateway) => {
-        const gatewayAndHash = gateway.replace(hashToTest)
+        const gatewayAndHash = gateway.replace(':hash', hashToTest)
         fetch(gatewayAndHash)
-          .then(res => res.text())
-          .then((text) => {
-            // const matched = text.trim() === hashString.trim()
-            // addNode(gatewayAndHash, matched, matched ? 'All good' : 'Output did not match expected output')
-            console.log(gatewayAndHash, matched, matched ? 'All good' : 'Output did not match expected output')
+          .then(res => res)
+          .then((res) => {
+            console.log(res.status)
+            switch(res.status) {
+              case 200:
+                  console.log('easy')
+                  return gatewayAndHash
+                  break;
+              default:
+              console.log('down')
+          }
+            //const matched = text.trim() === hashInfo.trim()
+            selectNode(gatewayAndHash, matched, matched ? 'All good' : 'Output did not match expected output')
             checked++
             updateStats(total, checked)
           }).catch((err) => {
             window.err = err
-            // addNode(gatewayAndHash, false, err)
+            selectNode(gatewayAndHash, false, err)
             checked++
             updateStats(total, checked)
           })
       })
     }
 
-    fetch(gateways)
-      .then(res => res.json())
-      .then(gateways => checkGateways(gateways))
+    function updateStats(total, checked) {
+      console.log(checked + '/' + total + ' gateways checked')
+    }
+
+    function selectNode(gateway, online, title) {
+      console.log(gateway, online, title)
+      if (online) {
+        console.log('Node Online')
+      } else {
+        console.log('Node Offline')
+      }
+    }
   </script>
 </body>
 
