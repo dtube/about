@@ -25,7 +25,7 @@
     var autoplay = (path.split("/")[2] == 'true')
     var nobranding = (path.split("/")[3] == 'true')
     // var videoGateway = path.split("/")[4]
-    // var snapGateway = path.split("/")[5]
+    var snapGateway = path.split("/")[5]
     var hashToTest;
     steem.api.getContent(path.split("/")[0], path.split("/")[1], function (err, b) {
       if (err) {
@@ -33,13 +33,12 @@
         return
       }
       var a = JSON.parse(b.json_metadata).video;
-
-
-
       // if (!videoGateway) {
       //   videoGateway = checkHashAndGateways(a.content.videohash);
       // }
-      // if (!snapGateway) snapGateway = checkHashAndGateways(a.info.snaphash)
+      if (!snapGateway) checkHashAndGateways(a.info.snaphash, function (err, result) {
+            snapGateway = result
+        })
       var qualities = []
 
       if (a.content.video480hash) {
@@ -197,27 +196,13 @@
     function checkHashAndGateways(hashToTest, cb) {
       const total = gateways.length
       let checked = 0
-      gateways.forEach((gateway) => {
+      gateways.every((gateway) => {
         const gatewayAndHash = gateway.replace(':hash', hashToTest)
         fetch(gatewayAndHash).then((res) => {
-            // cb(null, gatewayAndHash)
-            // checked++
-            // updateStats(total, checked)
-               switch(res.status) {
-                 case 200:
-                    //  console.log('Server Status ' + res.status)
-                    //  console.log(gatewayAndHash + ' Node Online')
-                     cb(null,gatewayAndHash) 
-                     break;
-                 default:
-                 console.log('strange')
-                 break;
-             }
+          if (!gatewayAndHash) return false
+          else return cb(null,gatewayAndHash) 
           }).catch((err) => {
             window.err = err
-            // console.log(gatewayAndHash, false, err)
-            // checked++
-            // updateStats(total, checked)
           })
       })
     }
