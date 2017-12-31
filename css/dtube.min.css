@@ -506,14 +506,14 @@ header.masthead .intro-text .intro-heading {
     margin-top: 0
 }
 
-section#links {
+section#contact {
     background-color: #212529;
     background-image: url(../img/map-image.png);
     background-repeat: no-repeat;
     background-position: center
 }
 
-section#links .section-heading {
+section#contact .section-heading {
     color: #fff
 }
 
