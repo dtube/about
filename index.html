@@ -1,217 +1,509 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<head>
-  <link href="https://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
-  <link href="player.css" rel="stylesheet">
-  <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
-  <script src="https://vjs.zencdn.net/6.2.7/video.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/webtorrent/0.98.20/webtorrent.min.js"></script>
-  <script src="branding.js"></script>
-  <script src="persistvolume.js"></script>
-  <script src="resolutionswitcher.js"></script>
-  <script src="settingsmenubuttons.js"></script>
-  <script src="settingsmenuitem.js"></script>
-  <script src="hotkeys.js"></script>
-</head>
+  <head>
 
-<body style='margin:0'>
-  <script>
-    player = null
-    itLoaded = false
-    steem.api.setOptions({
-      url: 'https://api.steemit.com'
-    });
-    var path = window.location.href.split("#!/")[1];
-    var autoplay = (path.split("/")[2] == 'true')
-    var nobranding = (path.split("/")[3] == 'true')
-    // var videoGateway = path.split("/")[4]
-    var snapGateway = path.split("/")[5]
-    var hashToTest;
-    steem.api.getContent(path.split("/")[0], path.split("/")[1], function (err, b) {
-      if (err) {
-        console.log(err)
-        return
-      }
-      var a = JSON.parse(b.json_metadata).video;
-      // if (!videoGateway) {
-      //   videoGateway = checkHashAndGateways(a.content.videohash);
-      // }
-      if (!snapGateway) checkHashAndGateways(a.info.snaphash, function (err, result) {
-            snapGateway = result
-        })
-      var qualities = []
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      if (a.content.video480hash) {
-        checkHashAndGateways(a.content.video480hash, function (err, result) {
-          qualities.push({
-            label: '480p',
-            type: 'video/mp4',
-            src: result
-          })
-        })
-        checkHashAndGateways(a.content.videohash, function (err, result) {
-          qualities.push({
-            label: 'Source',
-            type: 'video/mp4',
-            src: result
-          })
-        })
-        checkHashAndGateways(a.info.snaphash, function (err, result) {
-          createPlayer(result, autoplay, nobranding, qualities)
-        })
-      } else {
-        checkHashAndGateways(a.content.videohash, function (err, result) {
-          qualities.push({
-            label: 'Source',
-            type: 'video/mp4',
-            src: result
-          })
-        })
-        checkHashAndGateways(a.info.snaphash, function (err, result) {
-          createPlayer(result, autoplay, nobranding, qualities)
-        })
-      }
+    <title>DTube - The biggest decentralized video platform</title>
 
-      // if there's a magnet link, start torrent in background
-      if (a.content.magnet) {
-        var Torrent = new WebTorrent()
-        Torrent.add(a.content.magnet, function (torrent) {
-          // and switch when torrent is ready  and downloading at fair speed!
-          torrent.on('download', function (bytes) {
-            console.log('download speed: ' + torrent.downloadSpeed)
-            console.log('progress: ' + torrent.progress)
-            if (!itLoaded && torrent.downloadSpeed > a.info.filesize / a.info.duration) {
-              itLoaded = true
-              var file = torrent.files[0]
-              var container = document.getElementsByTagName('video')[0]
-              file.renderTo(container)
-            }
-          })
-        })
-      }
-    });
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    function createPlayer(posterUrl, autoplay, branding, qualities) {
-      var c = document.createElement("video");
-      //c.src=videoUrl;
-      c.poster = posterUrl;
-      c.controls = true;
-      c.autoplay = autoplay;
-      c.id = "player";
-      c.className = "video-js";
-      c.style = "width:100%;height:100%";
-      c.addEventListener('loadeddata', function () {
-        if (c.readyState >= 3) {
-          itLoaded = true
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/dtube.min.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/Logo_White.svg" style="width:80px;"/></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">What is D.Tube?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#blog">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#faq">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#kit">Media kit</a>
+            </li>
+			 <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#links">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+<div class="container">
+        <div class="intro-text">
+          <div class="intro-lead-in"></div>
+          <div class="intro-heading text-uppercase"></div>
+		            <div class="intro-heading text-uppercase"></div>
+        </div>
+      </div>
+    </header>
+	
+
+    <!-- About -->
+    <section id="about" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">What is DTube ?</h2>
+            <h3 class="section-subheading text-muted">D.Tube is the biggest decentralized video platform, built on top of the STEEM Blockchain and the IPFS peer-to-peer network.</h3>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-btc fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Crypto incentive</h4>
+            <p class="text-muted">D.Tube aims to become an alternative to YouTube that allows you to watch or upload videos on IPFS and share or comment about it on the immutable STEEM Blockchain, while<strong> earning cryptocurrency</strong> doing it.</p>
+          </div>
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-low-vision fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Resistant to censorship</h4>
+            <p class="text-muted">Because of the decentralized nature of IPFS and STEEM, D.Tube is not able to censor videos, nor enforce guidelines. <strong>Only the users</strong>  can, through the power of their votes and downvotes. </p>
+          </div>
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-unlock fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Totaly Decentralized</h4>
+            <p class="text-muted">Unlike other platforms, D.Tube is <strong>totaly decentralized</strong>. This allow interactivity between users and creators without the need of middlemen. We also respect your privacy and don't collect any personal data. </p>
+          </div>
+		            <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Ads free</h4>
+            <p class="text-muted">D.Tube is serverless and has no running costs. Therefore, <strong>we don't need ads</strong>. Users are free to advertise any product or service they would like, directly inside their own videos, at their own risk of losing their subscribers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+	    <h3 class="text-center mt-5 mb-5">D.Tube is powered by</h3>
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+              <a href="https://steem.io" target="_blank">
+              <img class="img-fluid d-block mx-auto" src="img/logos/steem.png" alt="">
+			  <div style="text-align: center;">Steem</div>
+            </a>	
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <a href="https://ipfs.io" target="_blank">
+              <img class="img-fluid d-block mx-auto" src="img/logos/ipfs.png" alt="">
+			  			  <div style="text-align: center;">Ipfs</div>
+            </a>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <a href="https://www.asksteem.com/" target="_blank">
+              <img class="img-fluid d-block mx-auto" src="img/logos/asksteem.png" alt="">
+			  			  <div style="text-align: center;">Asksteem</div>
+            </a>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <a href="https://live.tube" target="_blank">
+              <img class="img-fluid d-block mx-auto" src="img/logos/tube.png" alt="">
+			  			  			  <div style="text-align: center;">Tube</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Blog</h2>
+            <h3 class="section-subheading text-muted">Last updates about D.Tube.</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="timeline" id="steemit-widgets-blog">
+			 </ul>
+             <!-- <div class="text-center"><i class="fa fa-spin fa-spinner"></i></div> -->
+			 <div class="text-center mt-4">
+                <a href="https://steemit.com/@dtube" class="btn btn-sm btn-danger rounded-0" target="_blank">more on steemit.com</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+	<section class="bg-light" id="faq">
+	<div id="app">
+		<div id="faq">
+        <div class="container">
+            <h1 class="text-center mb-5">FAQ</h1>
+            <div v-cloak>
+                <div v-for="(question, key) in faq">
+                    <div :id="'faq' + (key + 1)" class="faq-header">
+                        <a data-toggle="collapse" :href="'#faqCollapse' + (key + 1)">
+                            {{ key + 1 }}. {{ question.question }}
+                        </a>
+                    </div>
+
+                    <div :id="'faqCollapse' + (key + 1)" class="collapse faq-body" data-parent="#accordion">
+                        <div v-html="renderAnswer(question.answer)" class="py-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</div>
+	</div>	
+    </section>
+		
+    <!-- Team -->
+    <section class="bg-light" id="team">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+            <h3 class="section-subheading text-muted">Some of the nicest...</h3>
+          </div>
+        </div>
+        <div class="row eight-cols">
+          <div class="col-sm-2">
+            <div class="team-member">
+			  <a href="https://steemit.com/@heimindanger">
+              <h4>Adrien M.</h4>
+			  <h6>@heimindanger</h6>
+			               </a>
+              <p class="text-muted">Founder & CTO</p>
+ 
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="team-member">
+			  <a href="https://steemit.com/@hightouch">
+              <h4>Aytaç C.</h4>
+			  <h6>@hightouch</h6>
+			  </a>
+			  <p class="text-muted">Developer</p>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="team-member">
+			  <a href="https://steemit.com/@thekyle">
+              <h4>Jeremy F.</h4>
+			  <h6>@superkoala</h6>
+			  </a>
+              <p class="text-muted">Developer</p>
+            </div>
+          </div>
+		  <div class="col-sm-2">
+            <div class="team-member">
+			  <a href="https://steemit.com/@mkt">
+              <h4>Mkt</h4>
+			  <h6>@mkt</h6>
+			  </a>
+              <p class="text-muted">Developer</p>
+            </div>
+          </div>
+		   <div class="col-sm-2">
+            <div class="team-member">
+		      <a href="https://steemit.com/@nannal">
+              <h4>Nannal</h4>
+			  <h6>@nannal</h6>
+			  </a>
+              <p class="text-muted">IPFS Provider</p>
+            </div>
+          </div>
+		  <div class="col-sm-2">
+            <div class="team-member">
+			  <a href="https://steemit.com/@thekyle">
+              <h4>Thekyle</h4>
+			  <h6>@thekyle</h6>
+			   </a>
+              <p class="text-muted">Search Provider</p>
+            </div>
+          </div>
+		  <!-- <div class="col-sm-2"> -->
+            <!-- <div class="team-member"> -->
+              <!-- <h4>Berk O.</h4> -->
+			  <!-- <h6>@steeminator3000</h6> -->
+              <!-- <p class="text-muted">Community Manager</p> -->
+            <!-- </div> -->
+          <!-- </div>	         -->
+        </div>
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+		     <h3 class="section-subheading text-muted">and smartest people you'll ever meet.</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+		   <section id="contributing" class="py-5">
+	     <div class="container">
+		         <div class="col-lg-8 mx-auto text-center">
+            <h1 class="text-center mt-5 mb-5">Contributing</h1>
+			   <h3 class="section-subheading text-muted">D.Tube is constantly being developed by our team and enhanced by all the community. You can play your part in it. Concretely, you can help us for :</h3>	
+			    </div>
+            <div class="row text-center">
+                <div class="col-12 col-sm-6">
+                    <h4 class="text-muted">Source Code</h4>
+                    <a href="https://github.com/dtube" class="contributing-github-logo">
+                        <i class="fa fa-github fa-2x"></i>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                    <h4 class="text-muted">Translations</h4>
+                    <a href="https://crowdin.com/project/dtube" target="_blank">
+                        <img src="img/logos/crowdin-logo.svg" alt="Crowdin" class="crowdin-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	    <!-- Contributing -->
+    <section id="kit" class="py-5">
+      <div class="container">
+	            <div class="col-lg-8 mx-auto text-center">
+            <h1 class="text-center mt-5 mb-5">Media kit</h1>
+			<h3 class="section-subheading text-muted">A document which provides all informations about D.Tube.</h3>
+			</div>
+            <div class="row text-center">
+                <div class="col-12 col-sm-12">
+                    <h4 class="text-muted">Download from Github</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+		
+    <!-- Contact -->
+    <section id="links">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Contact Us</h2>
+            <h3 class="section-subheading text-muted">There is multiple ways to reach us...</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+           <div class="row eight-cols">
+          <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://discord.gg/krwbAaU">
+              <h4 style="color:white">Discord</h4>
+			  <h6 style="color:white">discord.gg/krwbAaU</h6>
+			  </a>
+            </div>
+          </div>
+		  <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://github.com/dtube">
+              <h4 style="color:white">GitHub</h4>
+			  <h6 style="color:white">github.com/dtube</h6>
+			  </a>
+            </div>
+          </div>
+		   <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://reddit.com/r/dtube">
+              <h4 style="color:white">Reddit</h4>
+			  <h6 style="color:white">reddit.com/r/dtube</h6>
+			  </a>
+            </div>
+          </div>
+		  <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://steemit.chat/channel/dtube">
+              <h4 style="color:white">Chat</h4>
+			  <h6 style="color:white">steemit.chat/channel/dtube</h6>
+			  </a>
+            </div>
+          </div>
+        </div>
+		           <div class="row eight-cols">
+          <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://steemit.com/@dtube">
+              <h4 style="color:white">Blog</h4>
+			  <h6 style="color:white">steemit.com/@dtube</h6>
+			  </a>
+            </div>
+          </div>
+		  <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://steemit.com/">
+              <h4 style="color:white">Steemit.com</h4>
+			  <h6 style="color:white">steemit.com</h6>
+			  </a>
+            </div>
+          </div>
+		   <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://steem.io/">
+              <h4 style="color:white">Steem.io</h4>
+			  <h6 style="color:white">steem.io</h6>
+			  </a>
+            </div>
+          </div>
+		  <div class="col-sm-3">
+            <div class="team-member">
+			  <a href="https://ipfs.io/">
+              <h4 style="color:white">Ipfs.io</h4>
+			  <h6 style="color:white">ipfs.io</h6>
+			  </a>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+                <div class="col mt-5 mt-md-0">
+                    <div id="steemit-widgets-ticker"></div>
+                </div>
+      </div>
+    </section>
+	    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Copyright &copy; D.Tube 2017-2018</span>
+          </div>
+          <div class="col-md-4">
+   <a class="github-button" href="https://github.com/dtube/production"
+                       data-icon="octicon-star"
+                       data-show-count="true"
+                       aria-label="Star dtube about on GitHub">
+                        Give a Star to DTube
+                   </a>
+         
+        </div>
+      </div>
+    </footer>
+	<div>
+</div>
+
+
+<template id="steemit-widgets-blog-template">
+               <li>
+			      <a href="${URL}" target="_blank" style="color:black">
+				<div class="timeline-image">
+				<span class="timelinenumber">${DATE}</span>
+                  <!--<img class="rounded-circle img-fluid" src="${IMAGE}" alt=""> -->
+                </div>
+                 <div class="timeline-panel">
+                  <div class="timeline-heading">
+                  <h4 style="color:black">${TITLE} </a></h4>
+                  </div>
+				   <div class="timeline-body">
+                    <p class="text-muted">by <a href="https://steemit.com/@${AUTHOR}" target="_blank">${AUTHOR}			
+					<a href="${URL}" target="_blank">
+						${RESTEEMED}
+					</a>
+					</p>
+                 </div>
+				 </a>
+              </li>
+</template>
+
+<template id="steemit-widgets-ticker-template">
+    <div style="border: 0 solid rgb(0, 168, 230); border-radius: 10px; font-family: Arial, Helvetica, sans-serif;    background-color: #ffffff;">
+        <div style="color: #666;">
+	
+            <div style="display: table; table-layout: fixed; width: 100%; text-align: center; font-size: 18px; line-height: 21px; padding: 10px 0 5px;">
+				                    <h5 class="text-center">STEEM Price:</h5>
+                <div style="display: table-cell;"><b>${PRICE_USD} USD</b><br><small>${PRICE_BTC} BTC</small></div>
+                <div style="display: table-cell;"><b>${PERCENT_CHANGE_24H} <small>24h</small></b><br><small>${PERCENT_CHANGE_7D} 7d</small></div>
+            </div>
+            <div style="display: table; table-layout: fixed; width: 100%; text-align: center; font-size: 12px; padding: 5px 0;">
+                <div style="display: table-cell;">
+                    Market Cap: $ ${MARKET_CAP_USD}<br>
+                    <a href="https://coinmarketcap.com/currencies/steem/" class="text-muted">coinmarketcap.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.4.4/dist/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<!-- Custom scripts for this template -->
+	<script src="js/dtube.min.js"></script>
+	<script src="js/index.js"></script>
+		
+<!-- scripts -->
+<script src="https://buttons.github.io/buttons.js" async defer></script>
+<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+<script src="https://mktcode.github.io/steemit-widgets/assets/js/steemit-widgets.min.js"></script>
+<script>
+    steem.api.setOptions({url: 'https://api.steemit.com'});
+    steemitWidgets.blog({
+        user: 'dtube',
+        element: 'steemit-widgets-blog',
+        template: 'steemit-widgets-blog-template',
+        limit: 7,
+        updateInterval: 0,
+        resteemedIndicator: '<i class="fa fa-refresh" title="resteemed"></i>',
+        dateCallback: function (date) {
+            return moment.utc(date).format('DD MMM YYYY');
         }
-      });
-      document.body.appendChild(c);
-      player = videojs("player", {
-        inactivityTimeout: 1000,
-        sourceOrder: true,
-        sources: qualities,
-        techOrder: ["html5"],
-        'playbackRates': [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2],
-        controlBar: {
-          children: {
-            'playToggle': {},
-            'muteToggle': {},
-            'volumeControl': {},
-            'currentTimeDisplay': {},
-            'timeDivider': {},
-            'durationDisplay': {},
-            'liveDisplay': {},
-            'flexibleWidthSpacer': {},
-            'progressControl': {},
-            'settingsMenuButton': {
-              entries: [
-                //  'subtitlesButton',
-                //  'captionsButton',
-                'playbackRateMenuButton'
-              ]
-            },
-            'fullscreenToggle': {}
-          }
-        },
-        plugins: {
-          persistvolume: {
-            namespace: 'dtube'
-          },
-          videoJsResolutionSwitcher: {
-            default: qualities[0].label
-          }
-        }
-      });
-      videojs('player').ready(function () {
-        this.hotkeys({
-          volumeStep: 0.05,
-          seekStep: 5,
-          enableModifiersForNumbers: false
-        });
-      });
-      player.brand({
-        branding: !JSON.parse(nobranding),
-        title: "Watch on DTube",
-        destination: "http://d.tube/#!/v/" + path.split("/")[0] + '/' + path.split("/")[1],
-        destinationTarget: "_blank"
-      })
-      //player.updateSrc(qualities)
-      player.on('resolutionchange', function () {
-        console.info('Source changed to %s', player.src())
-      })
-    }
+    });
 
-    function removePlayer() {
-      var elem = document.getElementById('player');
-      return elem.parentNode.removeChild(elem);
-    }
+    steemitWidgets.ticker({
+        element: 'steemit-widgets-ticker',
+        template: 'steemit-widgets-ticker-template',
+        currency: 'steem',
+        priceBTCPrecision: 8,
+        priceUSDPrecision: 2,
+        updateInterval: 60
+    });
 
-    // function gatewayByHash(ipfsHash) {
-    //   var g = ipfsHash.charCodeAt(ipfsHash.length - 1) % gateways.length
-    //   return gateways[g].split('://')[1]
-    // }
+</script>
 
-    // function linkByHash(ipfsHash) {
-    //   return 'https://' + gatewayByHash(ipfsHash) + '/ipfs/' + ipfsHash
-    // }
-    gateways = [
-      "https://ipfs.io/ipfs/:hash",
-      "https://gateway.ipfs.io/ipfs/:hash",
-      "https://earth.i.ipfs.io/ipfs/:hash",
-      "https://scrappy.i.ipfs.io/ipfs/:hash",
-      "https://chappy.i.ipfs.io/ipfs/:hash",
-      "https://gateway.ipfs.io/ipfs/:hash",
-      "https://ipfs.infura.io/ipfs/:hash",
-      "https://upload.global/ipfs/:hash",
-      "https://siderus.io/ipfs/:hash",
-      "https://www.eternum.io/ipfs/:hash",
-      "https://hardbin.com/ipfs/:hash",
-      "https://ipfs.macholibre.org/ipfs/:hash",
-      "https://ipfs.works/ipfs/:hash",
-      "https://ipfs.work/ipfs/:hash",
-      "https://ipfs.wa.hle.rs/ipfs/:hash",
-    ]
-
-
-    function checkHashAndGateways(hashToTest, cb) {
-      const total = gateways.length
-      let checked = 0
-      gateways.every((gateway) => {
-        const gatewayAndHash = gateway.replace(':hash', hashToTest)
-        fetch(gatewayAndHash).then((res) => {
-          if (!gatewayAndHash) return false
-          else return cb(null,gatewayAndHash) 
-          }).catch((err) => {
-            window.err = err
-          })
-      })
-    }
-
-    function updateStats(total, checked) {
-      console.log(checked + '/' + total + ' gateways checked')
-    }
-
-  </script>
-</body>
+  </body>
 
 </html>
