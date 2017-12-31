@@ -52,11 +52,7 @@ section h3.section-subheading {
     font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
-@media (min-width:768px) {
-    section {
-        padding: 150px 0
-    }
-}
+
 
 .btn {
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
