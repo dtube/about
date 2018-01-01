@@ -1,8 +1,4 @@
-/*!
- * Bootstrap - DTube
- */
-
- body {
+body {
   overflow-x: hidden;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
@@ -428,27 +424,10 @@ width: 100%;
   border-radius: 20px;
 }
 }
-
-/* .timeline>li .timeline-panel  { */
-  /* position: relative; */
-  /* float: right; */
-  /* width: 100%; */
-  /* padding: 0 20px 0 100px; */
-  /* text-align: left */
-/* } */
-
 .timeline>li>.timeline-panel {
   padding: 0 20px 0 100px;
   text-align: left
 }
-
-/* .timeline>li.timeline-inverted>.timeline-panel, .timeline>li:nth-of-type(even) { */
-  /* position: relative; */
-  /* float: right; */
-  /* width: 100%; */
-  /* padding: 0 20px 0 100px; */
-  /* text-align: left */
-/* } */
 
 @media (min-width:1200px) {
   .timeline>li {
@@ -495,8 +474,6 @@ width: 100%;
   margin-bottom: 50px;
   text-align: center
 }
-
-.team-member img {}
 
 .team-member h4 {
   margin-top: 25px;
