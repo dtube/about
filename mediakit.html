@@ -12,34 +12,4 @@
   <div class="media" style="background:#e2e2e2!important"></div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-var folder = "img/kit/";
-$.ajax({
-    url : folder,
-    success: function (data) {
-        var patt1 = /"([^"]*\.(jpe?g|png|gif|svg))"/gi;
-        var result = data.match(patt1);
-        result = result.map(function(el) { return el.replace(/"/g, ""); });  
-
-        var uniqueNames = [];                   
-        $.each(result, function(i, el){
-            var el_url_encoded = encodeURIComponent(el);  
-            console.log("under analysis: " + el);
-            if($.inArray(el, uniqueNames) === -1  &&  $.inArray(el_url_encoded, uniqueNames) === -1){
-                console.log("adding " + el_url_encoded);
-                uniqueNames.push(folder+el_url_encoded);
-                $(".media").append( "<div style='text-align:center;display:grid;'><img src='" + folder+el_url_encoded +"' alt=''><a href='" + folder+el_url_encoded +"'>"+'<h3>'+el_url_encoded+"</h3></a></div>" );  
-            } else{   console.log(el_url_encoded + " already in!"); }
-        });
-    },
-    error: function(xhr, textStatus, err) {
-       console.log('Error: here we go...');
-       console.log(textStatus);
-       console.log(err);
-       console.log("readyState: "+xhr.readyState+"\n xhrStatus: "+xhr.status);
-       console.log("responseText: "+xhr.responseText);
-   }
-});
-</script>
 

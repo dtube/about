@@ -192,7 +192,6 @@
                   {{ key + 1 }}. {{ question.question }}
                 </a>
               </div>
-
               <div :id="'faqCollapse' + (key + 1)" class="collapse faq-body" data-parent="#accordion">
                 <div v-html="renderAnswer(question.answer)" class="py-4"></div>
               </div>
@@ -215,15 +214,17 @@
       <div class="row eight-cols">
         <div class="col-sm-2">
           <div class="team-member">
+              <img src="https://img.busy.org/@heimindanger?width=48&height=48"/>
             <a href="https://steemit.com/@heimindanger">
               <h5>@heimindanger</h5>
             </a>
-            <p class="text-muted">Founder & CTO</p>
+            <p class="text-muted">CTO</p>
 
           </div>
         </div>
         <div class="col-sm-2">
           <div class="team-member">
+              <img src="https://img.busy.org/@hightouch?width=48&height=48"/>
             <a href="https://steemit.com/@hightouch">
               <h5>@hightouch</h5>
             </a>
@@ -232,6 +233,7 @@
         </div>
         <div class="col-sm-2">
           <div class="team-member">
+            <img src="https://img.busy.org/@superkoala?width=48&height=48"/>
             <a href="https://steemit.com/@superkoala">
               <h5>@superkoala</h5>
             </a>
@@ -240,6 +242,7 @@
         </div>
         <div class="col-sm-2">
           <div class="team-member">
+              <img src="https://img.busy.org/@mkt?width=48&height=48"/>
             <a href="https://steemit.com/@mkt">
               <h5>@mkt</h5>
             </a>
@@ -248,6 +251,7 @@
         </div>
         <div class="col-sm-2">
           <div class="team-member">
+              <img src="https://img.busy.org/@nannal?width=48&height=48"/>
             <a href="https://steemit.com/@nannal">
               <h5>@nannal</h5>
             </a>
@@ -256,6 +260,7 @@
         </div>
         <div class="col-sm-2">
           <div class="team-member">
+              <img src="https://img.busy.org/@thekyle?width=48&height=48"/>
             <a href="https://steemit.com/@thekyle">
               <h5>@thekyle</h5>
             </a>
@@ -417,7 +422,7 @@
       <a href="${URL}" target="_blank" style="color:black">
         <div class="timeline-image">
           <span class="timelinenumber">${DATE}</span>
-          <img onload="myfunction" class="blogimg rounded-circle img-fluid" src="" alt=""> 
+          <img class="blogimg rounded-circle img-fluid" src="" alt=""> 
         </div>
         <div class="timeline-panel">
           <div class="timeline-heading">
@@ -505,7 +510,6 @@
       priceUSDPrecision: 2,
       updateInterval: 60
     });
-
   </script>
 
 </body>

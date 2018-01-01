@@ -103,6 +103,11 @@ body {
   background-color: #212529
 }
 
+.team-member img{
+  margin-bottom: 10px;
+  border-radius: 50px;
+}
+
 #mainNav .navbar-toggler {
   font-size: 12px;
   right: 0;
