@@ -580,7 +580,13 @@ img {
 text-align: center;
 display: grid;
 border-radius: 10px;
+padding-top: 20px;
 }
+
+.small-container{
+  text-align: center;
+  border-radius: 10px;
+  }
 
 .bg-dark.transparent{
   background: linear-gradient(45deg,#2e3033 25%,transparent 0,transparent 75%,#2e3033 0,#2e3033),linear-gradient(45deg,#2e3033 25%,transparent 0,transparent 75%,#2e3033 0,#2e3033);
