@@ -626,3 +626,7 @@ padding-top: 20px;
   background:#fafafa;
   color:black;
 }
+
+.widget-channel{
+  visibility:collapse;
+}
