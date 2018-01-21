@@ -587,6 +587,12 @@ padding-top: 20px;
   text-align: center;
   border-radius: 10px;
   }
+  
+  .bounty-container{
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+    }
 
 .bg-dark.transparent{
   background: linear-gradient(45deg,#2e3033 25%,transparent 0,transparent 75%,#2e3033 0,#2e3033),linear-gradient(45deg,#2e3033 25%,transparent 0,transparent 75%,#2e3033 0,#2e3033);
@@ -629,4 +635,17 @@ padding-top: 20px;
 
 .widget-channel{
   visibility:collapse;
+}
+
+.img-bounty{
+  max-width: 64px;
+}
+
+li{
+  margin-left: 20px;
+}
+
+.bug-bounty
+{
+  height: 64px;
 }
