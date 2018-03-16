@@ -80,8 +80,8 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
                 answer: `Yes you can. However you need to make adjustments from your account about NSFW content. You also need to tag your content accordingly (#nsfw) otherwise it will be flagged by the community, reducing your rewards.`
             },
             {
-                question: `Does DTube take a beneficiary rewards?`,
-                answer: `Yes, DTube take 25% beneficiary rewards. This was announced from the first version of DTube. These funds go to the @dtube account and are used for gathering funds prior to the existence of our future token. This model will most likely get changed in the future.`
+                question: `Does DTube take beneficiary rewards?`,
+                answer: `Yes, DTube takes 25% beneficiary rewards on all videos uploaded. This was announced from the first version of DTube. These funds go to the @dtube account and are used for gathering funds prior to the existence of our future token. This model will most likely get changed in the future.`
             }
         ],
         scrolled: false,
