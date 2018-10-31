@@ -81,7 +81,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
             },
             {
                 question: `Does DTube take beneficiary rewards?`,
-                answer: `Yes, DTube takes 25% beneficiary rewards on all videos uploaded. This was announced from the first version of DTube. These funds go to the @dtube account and are used for gathering funds prior to the existence of our future token. This model will most likely get changed in the future.`
+                answer: `Yes, DTube takes 10% beneficiary rewards on all videos uploaded. These rewards go to the @dtube account and are used for gathering funds prior to the existence of our future token. This model has been changed twice already and might get tuned in the future again.`
             }
         ],
         scrolled: false,
