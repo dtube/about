@@ -1,1 +1,20 @@
-<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480"><defs><style>.cls-1{fill:#212121;}.cls-2{fill:red;}</style></defs><title>Plan de travail 1</title><path class="cls-1" d="M392.51,146.65q-20.1-37.72-55.93-58.18T255.35,68H69.6l99.54,57.47h86.22q41.86,0,63.62,27.08t21.76,79.58v18.21q-.48,50.61-22.47,77.8t-63.62,27.2H165.72L67,412.34H256.06q45.17-.23,81.12-20.81t55.69-57.94q19.74-37.36,19.75-85.37V232.38Q412.61,184.37,392.51,146.65Z"/><polygon class="cls-2" points="269.59 240.3 68.86 124.4 68.86 356.19 269.59 240.3"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#223154;}
+	.st1{fill:#F01A30;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:#E6E6E6;}
+	.st4{fill:#333333;}
+	.st5{fill:none;stroke:#333333;stroke-width:0.5;stroke-miterlimit:10;}
+</style>
+<g>
+	<path class="st1" d="M335.7,279.4h0.9c14.1,0,25.6,11.5,25.6,25.6v0c0,14.1-11.5,25.6-25.6,25.6h-0.9c-14.1,0-25.6-11.5-25.6-25.6
+		v0C310.1,290.9,321.6,279.4,335.7,279.4z"/>
+	<path class="st0" d="M303,197.3c-4.4-12.2-10.5-22.6-18.5-31.2c-7.9-8.6-17.5-15.2-28.6-20c-11.1-4.7-23.4-7.1-36.9-7.1h-83.4
+		v195.6h80.4c12.4,0,23.5-1.5,33.4-4.5c9.8-3,18.6-7.4,26.3-13.3c10.9-8.4,19.3-19.3,25.2-32.7c5.8-13.4,8.8-28.8,8.8-46.1
+		C309.6,223.1,307.4,209.5,303,197.3z M184.7,280.8v-87.9l75.9,44L184.7,280.8z"/>
+</g>
+</svg>
