@@ -612,6 +612,16 @@ padding-top: 20px;
   color:white;
 }
 
+.unired{
+  background: #F01A30;
+  color:white;
+}
+
+.navyblue{
+  background: #223154;
+  color:white;
+}
+
 .white{
   background:#ffffff;
   color:black;
@@ -623,7 +633,7 @@ padding-top: 20px;
 }
 
 .almostwhite{
-  background:#fafafa;
+  background:#E6E6E6;
   color:black;
 }
 
