@@ -41,7 +41,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
             },
             {
                 question: `I don't see the claim button for claiming my Dtube account?`,
-                answer: `Clear your web browser cache and log out your Steem account and refresh the page. Sign in again to your Steem account and the pop-up to claim your Dtube Account will appear. If you are still having trouble please contact us in the [#dtube channel](https://steemit.chat/channel/dtube) on `
+                answer: `Clear your web browser cache and log out your Steem account and refresh the page. Sign in again to your Steem account and the pop-up to claim your Dtube Account will appear. If you are still having trouble please contact us in the [#-help-channel](https://discord.gg/dtube) on Discord`
             },
             {
                 question: `I have lost my keys?`,
