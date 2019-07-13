@@ -37,7 +37,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
             },
             {
                 question: `Where does the Money come from ?`,
-                answer: `The Avalon blockchain keeps printing new DTC everyday. These new printed DTC are given out as rewards.`
+                answer: `The Avalon blockchain keeps printing new DTC everyday. These new printed DTC are given out as rewards.`,
             },
             {
                 question: `I don't see the claim button for claiming my Dtube account?`,
@@ -46,8 +46,15 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
             {
                 question: `I have lost my keys?`,
                 answer: `DTube Chain uses cryptographic keys as logins. While much more secure than a password, we can’t do anything to retrieve your keys if lost.However this may change in the future patchs
-However this might change in the future patches, check on your “download” folder or file directory to see if your keys there or not.`
-
+However this might change in the future patches, check on your “download” folder or file directory to see if your keys there or not.`,
+            },
+            {
+                question: `I’ve created my Dtube account and all my videos disappeared.`,
+                answer: `You just need to update your profile with your steem username:.`
+            },
+            {
+                question: `What is the maximum allowed file size for a video on Dtube?`,
+                answer: `There is no maximum file size, however your browser might crash for huge files depending on your browser / os.`
             },
             {
                 question: `When I try to upload my video, the website crashes and "Oops something gone Wrong" error occurs.`,
@@ -58,8 +65,8 @@ However this might change in the future patches, check on your “download” fo
                 answer: `There is no maximum file size, however your browser might crash for huge files depending on your browser / os.`
             },
             {
-                question: `Why when I edit my video on SteemIt.com it doesn't change the text on D.Tube?`,
-                answer: `You need to edit through D.Tube to edit your videos.`
+                question: `Can I really use 1 tag on D.tube while posting?`,
+                answer: `Yes,However if you can always edit your post from different frontends and add more tags.`
             },
             {
                 question: `My video doesn't load at all. What do I need to do?`,
@@ -84,8 +91,76 @@ However this might change in the future patches, check on your “download” fo
             {
                 question: `Does DTube take beneficiary rewards?`,
                 answer: `Yes, DTube takes 10% beneficiary rewards on all videos uploaded. These rewards go to the @dtube account and are used for gathering funds prior to the existence of our future token. This model has been changed twice already and might get tuned in the future again.`
-            }
-        ],
+          
+     
+            },
+            {
+                question: `I posted a video via Dtube but it doesn't show on Steem.`,
+                answer: `You are either not logged on Steem or you didn't update your Dtube account with your Steem username , also logging in to accounts after clear your browser cache might work.`
+            },
+            {
+                question: `How do videos get ranked now ?`,
+                answer: `Rewards are activated on all chains and videos are now ranked only by upvotes on the DTube Chain.`
+            },
+            {
+                question: `I don’t want to post or vote on both Steem and Dtube Chain at the same time`,
+                answer: `You can put Dtube or Steem account unhold by clicking the images .`
+            },
+            {
+                question: `I want to vote with different % on Steem and DTube Chain?`,
+                answer: `On the left menu, click on little arrow of the account (Steem or DTube) and choose independently the % of Voting tokens you wish to spend on posts and votes.`
+            },
+            {
+                question: `I don’t have enough "bandwidth`,
+                answer: ` Just wait it reloads overtime if you own DTC.`
+            },
+            {
+                question: `What is the difference between Posting a URL and uploading via IPFS?`,
+                answer: ` Both ways of publishing a video will activate the token reward mechanism. URL posting is for people who wants to active their AD revenue for the content they created elsewhere and IPFS is for content creators who would like their content from abusive censorship`
+            },
+            {
+                question: `What platforms are supported for the “Post from URL” feature?`,
+                answer: `Most current video platforms: Youtube, Twitch, Facebook, Instagram, Vimeo, Dailymotion.`
+            },
+            {
+                question: `Will I still earn Steem tokens?`,
+                answer: `Of course, you can post, vote and earn Steem tokens as usual with DTube. Just check you are signed up to your Steem account on Steem.`
+            },
+            {
+                question: `Is DTube leaving Steem ?`,
+                answer: `Not at all, DTube is just adding new blockchains to Steem on the interface: DTC but also Steem Engine tokens such as PAL or WEED.We have been working pretty hard to ensure both chains (DTube and Steem) interoperability.`
+            },
+            {
+                question: `What is Scot tube?.`,
+                answer: ` Scot Tubes are like DTube, however users vote with and earn with token the tube is for. For example, https://video.sportstalksocial.com/ uses the SPORTS token, https://tube.palnet.io/ uses PAL and so forth 
+                You can learn more about Scottubes and how to set your own tube up [here](https://steemit.com/dtube/@heimindanger/steem-engine-tokens-dtube-scottube)
+ .`
+            },
+            {
+                question: `How can I empower my community with Scot tube ?`,
+                answer: `By creating a tube around your interests you can more easily develop and grow a community around the interest and further.`
+            },
+            {
+                question: `What will happen to DTC I earned during 0.9 Patch`,
+                answer: `When testing is concluded all Tokens will be wiped and users who have acquired their DTube accounts will receive their allocation of airdropped tokens.`
+            },
+            {
+                question: `What is a Leader?`,
+                answer: `A Leader is a person who operates leader node ( which produces blocks) , and leader computers in Dtube network have a job that is to make "blocks" and add them to the blockchain and also to store the  complete blockchain data.`
+            },
+            {
+                question: `How can I become a Leader ?`,
+                answer: ` By running an Avalon node, publishing the nodes connection details & receving enough leader votes to put you into the most highly voted users. You can see your position and the current leaders [here](https://d.tube/#!/election).`
+            },
+            {
+                question: `Can I still earn DTC eventhough I'm not a Leader?`,
+                answer: `Of course! Miners are not awarded tokens for their efforts, all tokens are distributed from the reward pool and are earned by users upvoting content.`
+            },
+            
+
+
+
+ ],
         scrolled: false,
         remarkable: null
     },
