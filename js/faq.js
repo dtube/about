@@ -36,16 +36,18 @@ Why not use Torrent then? Torrent arguably already has more content and is more 
 IPFS is a younger, open-source, and actively developed protocol. It has a bright future ahead. Using it as the main mean of storage for this project was a no-brainer.`
             },
             {
-                question: `Where does the money come from?`,
-                answer: `The STEEM blockchain keeps printing new STEEM everyday. These new printed STEEM are given out as rewards.`
+                question: `Where does the Money come from ?`,
+                answer: `The Avalon blockchain keeps printing new DTC everyday. These new printed DTC are given out as rewards.`
             },
             {
-                question: `My private posting key is not working. What can I do?`,
-                answer: `This shouldn't happen any more. However, if you are still facing this issue, try changing you browser to the latest version of Opera, Chrome, Firefox or Internet Explorer/Edge. If this doesn't help please contact us in the [#dtube channel](https://steemit.chat/channel/dtube) on [steemit.chat](https://steemit.chat)`
+                question: `I don't see the claim button for claiming my Dtube account?`,
+                answer: `Clear your web browser cache and log out your Steem account and refresh the page. Sign in again to your Steem account and the pop-up to claim your Dtube Account will appear. If you are still having trouble please contact us in the [#dtube channel](https://steemit.chat/channel/dtube) on `
             },
             {
-                question: `I keep getting "Failed to Fetch File" error. What can I do?`,
-                answer: `"Failed to Fetch File" error is most likely a problem on our side. Changing the API in the settings to fix that error can help. If you are getting this problem please contact us in the [#dtube channel](https://steemit.chat/channel/dtube) on [steemit.chat](https://steemit.chat) or try again later.`
+                question: `I have lost my keys?`,
+                answer: `DTube Chain uses cryptographic keys as logins. While much more secure than a password, we can’t do anything to retrieve your keys if lost.However this may change in the future patchs
+However this might change in the future patches, check on your “download” folder or file directory to see if your keys there or not.`
+
             },
             {
                 question: `When I try to upload my video, the website crashes and "Oops something gone Wrong" error occurs.`,
