@@ -23,7 +23,7 @@ You can also login to multiple accounts and easily switch between them.
 
 Because we want D.Tube to be truly decentralized, we cannot have a server running a database and use it to query things. Using a blockchain is a natural solution. STEEM has many advantages over other blockchains. It is fast (3 sec blocks). It is free, anyone can use it without having to deposit some form of currency, and transactions have no fees. Who would want to pay money to upload a video, comment a video, or even upvote? Nobody. As an added bonus, the STEEM blockchain already has a reward-earning mechanism.
 
-Any video uploaded on D.Tube becomes a STEEM content, that can earn rewards for 7 days. D.Tube doesn't use either the title or the body of a content to store information, therefore if you don't want your video upload to appear in your feed, you can edit or delete it, the video would stay intact on D.Tube. While it would be possible to display nothing on other platforms like steemit.com or busy.org, I believe the current behavior to be fine and will help the platform growth and the users rewards.
+ny video uploaded on D.Tube becomes a STEEM content, that can earn rewards for 7 days. D.Tube doesn't use either the title or the body of a content to store information, therefore if you don't want your video upload to appear in your feed, you can edit or delete it, the video would stay intact on D.Tube. While it would be possible to display nothing on other platforms like steemit.com or busy.org, I believe the current behavior to be fine and will help the platform growth and the users rewards.
 
 <h3>Using [IPFS](https://ipfs.io/) as a static file storage</h3>
 
