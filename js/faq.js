@@ -4,26 +4,26 @@ let app = new Vue({
         faq: [
             {
                 question: `How do I use D.Tube?`,
-                answer: `If you want to give likes, write comments or upload your own videos, you need an account. D.Tube uses the [steem platform](https://steem.io) for user authentication. In order to create an account go to [https://steemit.com/pick_account](https://steemit.com/pick_account) and follow the registration steps.
+                answer: `If you want to give likes, write comments or upload your own videos, you need a Dtube account.  In order to create an account go to [account creation page](https://signup.d.tube/) and follow the registration steps.
 
-Once your account is activated, you can login to D.Tube by entering the username you chose and your private **private posting key**. You can find this key in the permissions section in your profile page on steemit.com.
-![Permissions](img/profile-permissions.png)
+Once your account is open, you can login to D.Tube by entering the username and your **private key** and you can also login to your Hive or Steem account to benefit from interoperability features of Dtube. You can either login with Keychain or private key inorder to find your private key you can follow these steps.
+<center>![](https://i.imgur.com/YmjP4wo.png)</center>
 
 <div class="alert alert-info"><b>Attention:</b> The key that is shown before you clicked on <b>SHOW PRIVATE KEY</b> (3) is just a placeholder.</div>
 
-You can also login to multiple accounts and easily switch between them.
+You can login with Dtube/Hive/Steem accounts and easily navigate between them.
 
 <center>![Multi User Login](img/multi-user-login.png)</center>`
             },
             {
                 question: `How does D.Tube work?`,
-                answer: `<h3>Using the [STEEM](https://steem.io) Blockchain as a database</h3>
+                answer: `<h3>Using the Avalon Blockchain as a database</h3>
 
-<center>![STEEM](img/logos/steem.png)</center>
 
-Because we want D.Tube to be truly decentralized, we cannot have a server running a database and use it to query things. Using a blockchain is a natural solution. STEEM has many advantages over other blockchains. It is fast (3 sec blocks). It is free, anyone can use it without having to deposit some form of currency, and transactions have no fees. Who would want to pay money to upload a video, comment a video, or even upvote? Nobody. As an added bonus, the STEEM blockchain already has a reward-earning mechanism.
 
-Any video uploaded on D.Tube becomes a STEEM content, that can earn rewards for 7 days. D.Tube doesn't use either the title or the body of a content to store information, therefore if you don't want your video upload to appear in your feed, you can edit or delete it, the video would stay intact on D.Tube. While it would be possible to display nothing on other platforms like steemit.com or busy.org, I believe the current behavior to be fine and will help the platform growth and the users rewards.
+Because we want D.Tube to be truly decentralized, we cannot have a server running a database and use it to query things. Using Avalon blockchain is a natural solution. . It is fast . It is free, anyone can use it without having to deposit some form of currency, and transactions have no fees. Who would want to pay money to upload a video, comment a video, or even upvote? Nobody. 
+
+Any video uploaded on D.Tube becomes an Avalon content, that can earn rewards also you can post your content to Steem and Hive blockchains and benefit from interoperable features of Dtube.
 
 <h3>Using [IPFS](https://ipfs.io/) as a static file storage</h3>
 
@@ -34,25 +34,58 @@ IPFS is a protocol that enables decentralized file storage. The principle behind
 Why not use Torrent then? Torrent arguably already has more content and is more mainstream. However, Torrent was not built for the web. Some implementations such as WebTorrent are trying to make it work, but it still requires some 'hybrid' clients that would act as bridges in order to transfer files from hard clients such as μTorrent to web clients that run in a browser. Not very convenient, even less efficient. I am sure a lot of you have used PopcornTime to watch some 'pirated' content and have enjoyed it, but building something similar that runs inside a browser without having to run hybrid clients to connect people, is sadly impossible.
 
 IPFS is a younger, open-source, and actively developed protocol. It has a bright future ahead. Using it as the main mean of storage for this project was a no-brainer.`
+            
+
+
+
+ },
+            {
+                question: `What is Dtube Coin(DTC) ?`,
+                answer: ` Currency of the blockchain, a utility token for videos.`,
             },
             {
+                question: `What is Voting Power(VP)?`,
+                answer: `Voting power is a power you generate from your staked up DTC to curate content and VP replenishes based on your DTC at rate of +1 VP / DTC / hour`
+            },
+            {
+                question: `What is a vote?`,
+                answer: `A vote is an expression of like (upvote) or dislike (downvote) for a post/comment. The Avalon blockchain uses the votes that a post/comment has received to determine its share of the rewards.`,
+            },
+            {
+                question: `What is a Curator ?.`,
+                answer: `A Dtube user who upvotes a video by using their VP to assign value to a post that they believe has good quality content and should be seen and the content creator rewarded:.`
+            },
+            {
+                question: `What is a Reward pool?`,
+                answer: `Every day, a fixed amount of Dtube tokens are allocated to the network reward fund, commonly called the "reward pool." These get distributed to authors and curators for posting and voting on content.`
+            },
+            {
+                question: `What is an Owner Key?.`,
+                answer: `The owner key is the master key for the account and is required to change or create lesser authority keys. Please do not lose it.`
+            },
+            {
+                question: `How can I create lesser authority keys?`,
+                answer: `You can always create lesser authority keys from Channel/Keys, keys are used to authenticate transactions.`
+            },
+            {
+                question: `Can I change my account name?`,
+                answer: `Sadly you can't change your blockchain account name , however in the following patches we may add display name feature.`
+            },
+            {
+                question: `I posted a video on Steem/hive but can't see it on my Dtube Channel?`,
+                answer: `In order to see videos in your channel you need to have a Dtube account. You can get a Dtube account by clicking [here](https://signup.d.tube/).`
+            },
+            {
+                question: `I have lost my keys , What should I do?`,
+                answer: `DTube Chain uses cryptographic keys as logins. While much more secure than a password, we can’t do anything to retrieve your keys if lost.However this may change in the future patchs However this might change in the future patches, check on your “download” folder or file directory to see if your keys there or not.`
+            },
+            {
+   
                 question: `Where does the Money come from ?`,
                 answer: `The Avalon blockchain keeps printing new DTC everyday. These new printed DTC are given out as rewards.`,
             },
             {
-                question: `I don't see the claim button for claiming my Dtube account?`,
-                answer: `Clear your web browser cache and log out your Steem account and refresh the page. Sign in again to your Steem account and the pop-up to claim your Dtube Account will appear. If you are still having trouble please contact us in the [#-help-channel](https://discord.gg/dtube) on Discord`
-            },
-            {
-                question: `I have lost my keys?`,
-                answer: `DTube Chain uses cryptographic keys as logins. While much more secure than a password, we can’t do anything to retrieve your keys if lost.However this may change in the future patchs
-However this might change in the future patches, check on your “download” folder or file directory to see if your keys there or not.`,
-            },
-            {
-                question: `I’ve created my Dtube account and all my videos disappeared.`,
-                answer: `You just need to update your profile with your steem username:.`
-            },
-            {
+         
                 question: `What is the maximum allowed file size for a video on Dtube?`,
                 answer: `There is no maximum file size, however your browser might crash for huge files depending on your browser / os.`
             },
@@ -62,7 +95,7 @@ However this might change in the future patches, check on your “download” fo
             },
             {
                 question: `What is the maximum allowed file size for a video on Dtube?`,
-                answer: `There is no maximum file size, however your browser might crash for huge files depending on your browser / os.`
+                answer: `There is no maximum file size, however if you are using Dtube uploader for your videos there are some limitations on file size.`
             },
             {
                 question: `Can I really use 1 tag on D.tube while posting?`,
@@ -75,10 +108,7 @@ However this might change in the future patches, check on your “download” fo
             {
                 question: `A video starts then stops after some seconds. What can I do?`,
                 answer: `You are experiencing buffering issues. Either the source video is too large for your connection, or the IPFS network is struggling.`
-            },
-            {
-                question: `I got $0.001 on my video but didn't receive any payments. What is the problem?`,
-                answer: `The minumum possible reward is actually $0.02. If your video have less than that, then no payment will be triggered by the blockchain.`
+    
             },
             {
                 question: `How many videos can I post?`,
@@ -91,30 +121,26 @@ However this might change in the future patches, check on your “download” fo
             {
                 question: `Does DTube take beneficiary rewards?`,
                 answer: `Yes, DTube takes 10% beneficiary rewards on all videos uploaded. These rewards go to the @dtube account and are used for gathering funds prior to the existence of our future token. This model has been changed twice already and might get tuned in the future again.`
-          
-     
+         
             },
             {
-                question: `I posted a video via Dtube but it doesn't show on Steem.`,
-                answer: `You are either not logged on Steem or you didn't update your Dtube account with your Steem username , also logging in to accounts after clear your browser cache might work.`
+                question: `I posted a video via Dtube but it doesn't show on Steem/Hive.`,
+                answer: `You are either not logged on Steem/Hive or you didn't update your Dtube account with your Steem/Hive username , also logging in to accounts after clear your browser cache might work.`
             },
             {
                 question: `How do videos get ranked now ?`,
                 answer: `Rewards are activated on all chains and videos are now ranked only by upvotes on the DTube Chain.`
             },
             {
-                question: `I don’t want to post or vote on both Steem and Dtube Chain at the same time`,
-                answer: `You can put Dtube or Steem account unhold by clicking the images .`
+                question: `I don’t want to post or vote on both Steem/Hive and Dtube Chain at the same time`,
+                answer: `You can put Dtube or Steem/Hive account unhold by using Disable/Enable switch from accounts section .`
             },
             {
-                question: `I want to vote with different % on Steem and DTube Chain?`,
-                answer: `On the left menu, click on little arrow of the account (Steem or DTube) and choose independently the % of Voting tokens you wish to spend on posts and votes.`
+                question: `I want to vote with different % on Steem/Hive and DTube Chain?`,
+                answer: `On the left menu, click on little arrow of the account (Steem/Hive or DTube) and choose independently the % of Voting tokens you wish to spend on posts and votes.`
             },
             {
-                question: `I don’t have enough "bandwidth`,
-                answer: ` Just wait it reloads overtime if you own DTC.`
-            },
-            {
+               
                 question: `What is the difference between Posting a URL and uploading via IPFS?`,
                 answer: ` Both ways of publishing a video will activate the token reward mechanism. URL posting is for people who wants to active their AD revenue for the content they created elsewhere and IPFS is for content creators who would like their content from abusive censorship`
             },
@@ -123,22 +149,8 @@ However this might change in the future patches, check on your “download” fo
                 answer: `Most current video platforms: Youtube, Twitch, Facebook, Instagram, Vimeo, Dailymotion.`
             },
             {
-                question: `Will I still earn Steem tokens?`,
-                answer: `Of course, you can post, vote and earn Steem tokens as usual with DTube. Just check you are signed up to your Steem account on Steem.`
-            },
-            {
-                question: `Is DTube leaving Steem ?`,
-                answer: `Not at all, DTube is just adding new blockchains to Steem on the interface: DTC but also Steem Engine tokens such as PAL or WEED.We have been working pretty hard to ensure both chains (DTube and Steem) interoperability.`
-            },
-            {
-                question: `What is Scot tube?.`,
-                answer: ` Scot Tubes are like DTube, however users vote with and earn with token the tube is for. For example, https://video.sportstalksocial.com/ uses the SPORTS token, https://tube.palnet.io/ uses PAL and so forth 
-                You can learn more about Scottubes and how to set your own tube up [here](https://steemit.com/dtube/@heimindanger/steem-engine-tokens-dtube-scottube)
- .`
-            },
-            {
-                question: `How can I empower my community with Scot tube ?`,
-                answer: `By creating a tube around your interests you can more easily develop and grow a community around the interest and further.`
+                question: `Will I still earn tokens?`,
+                answer: `Of course, you can post, vote and earn  tokens as usual with DTube. Just check you are signed up to your Steem account on Steem.`
             },
             {
                 question: `What will happen to DTC I earned during 0.9 Patch`,
