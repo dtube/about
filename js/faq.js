@@ -38,7 +38,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
 
 
 
- },
+            },
             {
                 question: `What is Dtube Coin(DTC) ?`,
                 answer: ` Currency of the blockchain, a utility token for videos.`,
