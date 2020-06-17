@@ -42,7 +42,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
 
             },
             {
-                question: `What is Dtube Coin(DTC) ?`,
+                question: `What is Dtube Coin(DTC)?`,
                 answer: ` Currency of the blockchain, a utility token for videos.`,
             },
             {
@@ -54,7 +54,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
                 answer: `A vote is an expression of like (upvote) or dislike (downvote) for a post/comment. The Avalon blockchain uses the votes that a post/comment has received to determine its share of the rewards.`,
             },
             {
-                question: `What is a Curator ?.`,
+                question: `What is a Curator ?`,
                 answer: `A Dtube user who upvotes a video by using their VP to assign value to a post that they believe has good quality content and should be seen and the content creator rewarded:.`
             },
             {
@@ -62,7 +62,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
                 answer: `Every day, a fixed amount of Dtube tokens are allocated to the network reward fund, commonly called the "reward pool." These get distributed to authors and curators for posting and voting on content.`
             },
             {
-                question: `What is an Owner Key?.`,
+                question: `What is an Owner Key?`,
                 answer: `The owner key is the master key for the account and is required to change or create lesser authority keys. Please do not lose it.`
             },
             {
@@ -83,7 +83,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
             },
             {
    
-                question: `Where does the Money come from ?`,
+                question: `Where does the Money come from?`,
                 answer: `The Avalon blockchain keeps printing new DTC everyday. These new printed DTC are given out as rewards.`,
             },
             {
@@ -130,7 +130,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
                 answer: `You are either not logged on Steem/Hive or you didn't update your Dtube account with your Steem/Hive username , also logging in to accounts after clear your browser cache might work.`
             },
             {
-                question: `How do videos get ranked now ?`,
+                question: `How do videos get ranked now?`,
                 answer: `Rewards are activated on all chains and videos are now ranked only by upvotes on the DTube Chain.`
             },
             {
@@ -163,7 +163,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
                 answer: `A Leader is a person who operates leader node ( which produces blocks) , and leader computers in Dtube network have a job that is to make "blocks" and add them to the blockchain and also to store the  complete blockchain data.`
             },
             {
-                question: `How can I become a Leader ?`,
+                question: `How can I become a Leader?`,
                 answer: ` By running an Avalon node, publishing the nodes connection details & receving enough leader votes to put you into the most highly voted users. You can see your position and the current leaders [here](https://d.tube/#!/election).`
             },
             {
