@@ -8,7 +8,6 @@ let app = new Vue({
 
 Once your account is open, you can login to D.Tube by entering the username and your **private key** and you can also login to your Hive or Steem account to benefit from interoperability features of Dtube. You can either login with Keychain or private key inorder to find your private key you can follow these steps.
 
-<center>![](https://i.imgur.com/NLct3Ds.png)</center>
 
 <center>![Permissions](img/profile-permissions.png)</center>
 
@@ -16,7 +15,7 @@ Once your account is open, you can login to D.Tube by entering the username and 
 
 You can login with Dtube/Hive/Steem accounts and easily navigate between them.
 
-<center>![Multi User Login](img/multi-user-login.png)</center>`
+<center>![](https://i.imgur.com/NLct3Ds.png)</center>`
             },
             {
                 question: `How does D.Tube work?`,
