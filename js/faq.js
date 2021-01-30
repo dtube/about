@@ -71,7 +71,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
             },
             {
                 question: `Can I change my account name?`,
-                answer: `Sadly you can't change your blockchain account name , however in the following patches we may add display name feature.`
+                answer: `Sadly you can't change your blockchain account name, however in following patches we may add display name feature.`
             },
             {
                 question: `I posted a video on Steem/hive but can't see it on my Dtube Channel?`,
@@ -79,7 +79,7 @@ IPFS is a younger, open-source, and actively developed protocol. It has a bright
             },
             {
                 question: `I have lost my keys , What should I do?`,
-                answer: `DTube Chain uses cryptographic keys as logins. While much more secure than a password, we can’t do anything to retrieve your keys if lost.However this may change in the future patchs However this might change in the future patches, check on your “download” folder or file directory to see if your keys there or not.`
+                answer: `DTube Chain uses cryptographic keys as logins. While much more secure than a password, we can’t do anything to retrieve your keys if lost. However this might change in future patches, check on your “download” folder or file directory to see if your keys there or not.`
             },
             {
    
